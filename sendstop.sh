@@ -2,7 +2,7 @@
 ETEOL=$(tput el)
 clear
 tput sc
-
+echo "Finalizing archive.. This might take a while."
 
 CONTCNT=$(sudo docker ps -qa | wc -l)
 sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
