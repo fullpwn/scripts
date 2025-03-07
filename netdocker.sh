@@ -1,6 +1,6 @@
 #!/bin/sh
 ETEOL=$(tput el)
-
+tput sc
 
 clear
 echo "--------------------"
@@ -9,7 +9,7 @@ echo "--------------------"
 
 while true
 do 
-    tput sc
+    
     TX=$(head /sys/class/net/docker0/statistics/tx_bytes)
     ptx="↓ $(numfmt --to iec --format "%8.4f" $TX)"
     RX=$(head /sys/class/net/docker0/statistics/rx_bytes)
