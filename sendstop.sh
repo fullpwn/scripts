@@ -1,11 +1,10 @@
 #!/bin/sh
 ETEOL=$(tput el)
-
-tput sc
 clear
+tput sc
+
 echo "--------------------"
-echo "Archie docker0"
-echo "STOP"
+echo "Archie docker0 [STOP]"
 echo "--------------------"
 CONTCNT=$(sudo docker ps -qa | wc -l)
 sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
@@ -18,6 +17,13 @@ do
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
     printf "$ptx $prx\n"
-    printf "$CONTUPD out of $CONTCNT alive containers$ETEOL"
+    if [ $CONTUPD -eq 0]
+    then
+        printf "Goodbye!$ETEOL\n"
+        exit 1
+    else    
+        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\n"
+    fi
+    
     sleep 0.1
 done

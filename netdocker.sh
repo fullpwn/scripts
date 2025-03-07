@@ -18,6 +18,11 @@ do
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
     printf "$ptx $prx\n"
-    printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\n"
+    if [ $CONTUPD -eq $CONTCNT ]
+    then
+        printf "All containers healthy.$ETEOL\n"
+    else    
+        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\n"
+    fi
     sleep 0.1
 done
