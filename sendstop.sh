@@ -18,6 +18,6 @@ do
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
     printf "$ptx $prx\n"
-    printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\n"
+    printf "$CONTUPD out of $CONTCNT alive containers$ETEOL"
     sleep 0.1
 done
