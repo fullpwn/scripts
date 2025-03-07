@@ -2,7 +2,6 @@
 ETEOL=$(tput el)
 clear
 tput sc
-echo "Finalizing archive.. This might take a while."
 
 CONTCNT=$(sudo docker ps -qa | wc -l)
 sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
@@ -14,6 +13,7 @@ do
     prx="↑ $(numfmt --to iec --format "%8.4f" $RX)"
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
+    printf "Finalizing archive.. This might take a while.\n"
     printf "$ptx $prx\n"
     if [ $CONTUPD = 0 ];
     then
