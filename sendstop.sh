@@ -17,7 +17,7 @@ do
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
     printf "$ptx $prx\n"
-    if [ $CONTUPD -eq 0 ]
+    if [ $CONTUPD = 0 ];
     then
         printf "Goodbye!$ETEOL\n"
         exit 1
