@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ETEOL=$(tput el)
 tput sc
 
