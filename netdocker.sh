@@ -19,12 +19,14 @@ do
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     TXCLC=$(($TX - $PRTXRD))
     TXFRM=$(numfmt --to iec --format "%8.4f" $TXCLC)
+    RXCLC=$(($RX - $PRRXRD))
+    RXFRM=$(numfmt --to iec --format "%8.4f" $RXCLC)
     PRTXRD=$TX
     PRRXRD=$RX
 
     tput rc
     printf "$ptx $prx\n"
-    printf "$TXFRM\n"
+    printf "↓ $TXFRM ↑ $RXFRM\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\n"
