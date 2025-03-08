@@ -1,27 +1,39 @@
-#!/bin/sh
+#!/bin/bash
 ETEOL=$(tput el)
-clear
 tput sc
 
+clear
+echo "--------------------"
+echo "Stopping Archie"
+echo "--------------------"
+    PRTXRD=0
+    PRRXRD=0
 CONTCNT=$(sudo docker ps -qa | wc -l)
 sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
 while true
 do 
+    
     TX=$(head /sys/class/net/docker0/statistics/tx_bytes)
     ptx="↓ $(numfmt --to iec --format "%8.4f" $TX)"
     RX=$(head /sys/class/net/docker0/statistics/rx_bytes)
     prx="↑ $(numfmt --to iec --format "%8.4f" $RX)"
+    CONTCNT=$(sudo docker ps -qa | wc -l)
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
+    TXCLC=$(($TX - $PRTXRD))
+    TXFRM=$(numfmt --to iec --format "%8.4f" $TXCLC)
+    RXCLC=$(($RX - $PRRXRD))
+    RXFRM=$(numfmt --to iec --format "%8.4f" $RXCLC)
+    PRTXRD=$TX
+    PRRXRD=$RX
+
     tput rc
-    printf "Finalizing archive.. This might take a while.\n"
-    printf "$ptx $prx\n"
-    if [ $CONTUPD = 0 ];
+    printf "$ptx $prx\033[0K\r\n"
+    printf "↓ $TXFRM ↑ $RXFRM\033[0K\r\n"
+    if [ $CONTUPD -eq $CONTCNT ]
     then
-        printf "Goodbye!$ETEOL\n"
-        sudo reboot
+        printf "All containers healthy.$ETEOL\033[0K\r\n"
     else    
-        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\n"
+        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\033[0K\r\n"
     fi
-    
-    sleep 0.1
+    sleep 1
 done
