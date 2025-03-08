@@ -33,5 +33,5 @@ do
     else    
         printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\r\n"
     fi
-    sleep 1
+    sleep 0.1
 done
