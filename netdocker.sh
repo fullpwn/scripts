@@ -26,7 +26,7 @@ do
 
     tput rc
     printf "$ptx $prx\033[0K\r\n"
-    printf "↓ $TXFRM ↑ $RXFRM\033[0K\r\n"
+    printf "↓ $TXFRM/s ↑ $RXFRM/s\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\033[0K\r\n"

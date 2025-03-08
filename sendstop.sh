@@ -6,8 +6,8 @@ clear
 echo "--------------------"
 echo "Stopping Archie"
 echo "--------------------"
-    PRTXRD=0
-    PRRXRD=0
+    PRTXRD=$(head /sys/class/net/docker0/statistics/tx_bytes)
+    PRRXRD=$(head /sys/class/net/docker0/statistics/rx_bytes)
 CONTCNT=$(sudo docker ps -qa | wc -l)
 sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
 while true
@@ -28,7 +28,7 @@ do
 
     tput rc
     printf "$ptx $prx\033[0K\r\n"
-    printf "↓ $TXFRM ↑ $RXFRM\033[0K\r\n"
+    printf "↓ $TXFRM/s ↑ $RXFRM/s\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\033[0K\r\n"
