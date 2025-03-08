@@ -6,8 +6,8 @@ clear
 echo "--------------------"
 echo "Archie docker0"
 echo "--------------------"
-    PRTXRD=0
-    PRRXRD=0
+    PRTXRD=$(head /sys/class/net/docker0/statistics/tx_bytes)
+    PRRXRD=$(head /sys/class/net/docker0/statistics/rx_bytes)
 while true
 do 
     
