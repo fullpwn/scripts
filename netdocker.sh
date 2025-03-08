@@ -6,7 +6,8 @@ clear
 echo "--------------------"
 echo "Archie docker0"
 echo "--------------------"
-
+    PRTXRD=0
+    PRRXRD=0
 while true
 do 
     
@@ -16,8 +17,13 @@ do
     prx="↑ $(numfmt --to iec --format "%8.4f" $RX)"
     CONTCNT=$(sudo docker ps -qa | wc -l)
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
+    TXCLC=$($TX - $PRTXRD | numfmt --to iec --format "%8.4f")
+    PRTXRD=$TX
+    PRRXRD=$RX
+
     tput rc
     printf "$ptx $prx\n"
+    printf "$TXCLC\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\n"
