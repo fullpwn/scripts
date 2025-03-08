@@ -25,13 +25,13 @@ do
     PRRXRD=$RX
 
     tput rc
-    printf "$ptx $prx\r\n"
-    printf "↓ $TXFRM ↑ $RXFRM\r\n"
+    printf "$ptx $prx\033[0K\r\n"
+    printf "↓ $TXFRM ↑ $RXFRM\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
-        printf "All containers healthy.$ETEOL\r\n"
+        printf "All containers healthy.$ETEOL\033[0K\r\n"
     else    
-        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\r\n"
+        printf "$CONTUPD out of $CONTCNT alive containers$ETEOL\033[0K\r\n"
     fi
     sleep 0.1
 done
