@@ -12,6 +12,8 @@ echo "--------------------"
 while true
 do 
     DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
+    DOCKERDSK=$(sudo du -s /var/lib/docker/containers | awk '{print $1}')
+    DOCKERDSKFRM=$(numfmt --to iec --format "%8.4f" $DOCKERDSK)
     TX=$(head /sys/class/net/docker0/statistics/tx_bytes)
     ptx="↓ $(numfmt --to iec --format "%8.4f" $TX)"
     RX=$(head /sys/class/net/docker0/statistics/rx_bytes)
@@ -45,8 +47,9 @@ do
                 printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
             fi
     else
-        printf "Disk usage: $DISK/90$ETEOL\033[0K\r\n"
+        printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
     fi
+    printf "Taking: DOCKERDSKFRM $ETEOL\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\033[0K\r\n"
