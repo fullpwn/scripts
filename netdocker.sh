@@ -8,7 +8,7 @@ echo "Archie docker0"
 echo "--------------------"
     PRTXRD=$(head /sys/class/net/docker0/statistics/tx_bytes)
     PRRXRD=$(head /sys/class/net/docker0/statistics/rx_bytes)
-    TRIP=0
+    TRIP=1
 while true
 do 
     DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
