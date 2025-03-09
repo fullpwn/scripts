@@ -30,7 +30,7 @@ do
     
     if [ $DISK -gt 20 ]
     then
-        printf "Disk usage: $DISK%$ETEOL\033[0K\r\n"
+        printf "Disk usage: $DISK\%$ETEOL\033[0K\r\n"
     fi
     if [ $CONTUPD -eq $CONTCNT ]
     then
