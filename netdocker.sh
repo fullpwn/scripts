@@ -12,7 +12,7 @@ echo "--------------------"
 while true
 do 
     DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
-    DOCKERDSK=$(sudo du -s /var/lib/docker/containers | awk '{print $1}')
+    DOCKERDSK=$(sudo du -sb /var/lib/docker/containers | awk '{print $1}')
     DOCKERDSKFRM=$(numfmt --to iec --format "%8.4f" $DOCKERDSK)
     TX=$(head /sys/class/net/docker0/statistics/tx_bytes)
     ptx="↓ $(numfmt --to iec --format "%8.4f" $TX)"
