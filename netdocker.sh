@@ -28,8 +28,16 @@ do
     printf "$ptx $prx\033[0K\r\n"
     printf "↓ $TXFRM/s ↑ $RXFRM/s\033[0K\r\n"
     
-    if [ $DISK -gt 20 ]
+    if [ $DISK -gt 90 ]
     then
+        sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
+            if [ $CONTUPD -eq 0]
+                then
+                printf "Reboot!$ETEOL\n"
+                sudo reboot
+              exit 1
+            fi
+    else 
         printf "Disk usage: $DISK/90$ETEOL\033[0K\r\n"
     fi
     if [ $CONTUPD -eq $CONTCNT ]
