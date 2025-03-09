@@ -1,0 +1,9 @@
+#!/bin/sh
+echo "username ALL=(ALL:ALL) NOPASSWD: ALL"  | sudo tee /etc/sudoers.d/username
+sudo mkdir /etc/systemd/system/getty@tty1.service.d/
+curl https://missaustraliana.net/warrior/config/override.conf -o override.conf
+sudo mv override.conf /etc/systemd/system/getty@tty1.service.d/
+curl -fsSL https://get.docker.com | sh
+curl -fsSL https://tailscale.com/install.sh | sh
+rm .bashrc
+curl https://missaustraliana.net/warrior/config/.bashrc -o .bashrc
