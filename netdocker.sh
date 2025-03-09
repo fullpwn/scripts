@@ -49,7 +49,7 @@ do
     else
         printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
     fi
-    printf "Taking: $DOCKERDSKFRM $ETEOL\033[0K\r\n"
+    #printf "Taking: $DOCKERDSKFRM $ETEOL\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
     then
         printf "All containers healthy.$ETEOL\033[0K\r\n"
