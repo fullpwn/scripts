@@ -36,7 +36,7 @@ do
 
     elif [ $TRIP -eq 1 ]
         then
-            if [ $CONTUPD -eq 0]
+            if [ $CONTUPD -eq 0 ]
                 then
                 printf "Rebooting!\033[0K\r\n"
                 sudo reboot
