@@ -8,6 +8,7 @@ echo "Archie docker0"
 echo "--------------------"
     PRTXRD=$(head /sys/class/net/docker0/statistics/tx_bytes)
     PRRXRD=$(head /sys/class/net/docker0/statistics/rx_bytes)
+    TRIP=0
 while true
 do 
     DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
@@ -31,13 +32,19 @@ do
     if [ $DISK -gt 90 ]
     then
         sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
+        TRIP=1
+
+    elif [ $TRIP -eq 1 ]
+        then
             if [ $CONTUPD -eq 0]
                 then
-                printf "Reboot!$ETEOL\n"
+                printf "Rebooting!\033[0K\r\n"
                 sudo reboot
               exit 1
+            else 
+                printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
             fi
-    else 
+    else
         printf "Disk usage: $DISK/90$ETEOL\033[0K\r\n"
     fi
     if [ $CONTUPD -eq $CONTCNT ]
