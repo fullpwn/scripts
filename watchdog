@@ -21,7 +21,7 @@ do
         TRIP=1
         echo 1 > TRIP
 
-    elif [ $TRIP -eq 1 ]
+    elif [ $(cat TRIP) -eq 1 ]
         then
             if [ $CONTUPD -eq 0 ]
                 then
@@ -33,7 +33,7 @@ do
                 printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
             fi
     else
-        printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
+        printf "Guarding. "
     fi
     sleep 1
 done
