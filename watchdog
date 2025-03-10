@@ -1,0 +1,35 @@
+#!/bin/bash
+ETEOL=$(tput el)
+tput sc
+
+clear
+echo "--------------------"
+echo "Watchdog"
+echo "--------------------"
+    TRIP=0
+while true
+do 
+        DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
+    DOCKERDSK=$(sudo du -sb /var/lib/docker/containers | awk '{print $1}')
+    DOCKERDSKFRM=$(numfmt --to iec --format "%8.4f" $DOCKERDSK)
+    tput rc
+        if [ $DISK -gt 90 ]
+    then
+        sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
+        TRIP=1
+        echo 1 > TRIP
+
+    elif [ $TRIP -eq 1 ]
+        then
+            if [ $CONTUPD -eq 0 ]
+                then
+                printf "Rebooting!\033[0K\r\n"
+                echo 0 > TRIP
+                sudo reboot
+              exit 1
+            else 
+                printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
+            fi
+    else
+        printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
+    fi
