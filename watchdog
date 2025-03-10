@@ -6,7 +6,7 @@ clear
 echo "--------------------"
 echo "Watchdog"
 echo "--------------------"
-TRIP=(cat TRIP)
+TRIP=$(cat TRIP)
     if [ $TRIP -eq 1 ]
         then
             echo 0 > TRIP
