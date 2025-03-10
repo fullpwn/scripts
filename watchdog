@@ -6,11 +6,7 @@ clear
 echo "--------------------"
 echo "Watchdog"
 echo "--------------------"
-TRIP=$(cat TRIP)
-    if [ $TRIP -eq 1 ]
-        then
-            echo 0 > TRIP
-    fi
+echo 0 >> TRIP
 
 while true
 do 
