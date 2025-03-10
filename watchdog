@@ -34,3 +34,5 @@ do
     else
         printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
     fi
+    sleep 1
+done
