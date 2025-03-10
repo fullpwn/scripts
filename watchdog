@@ -34,7 +34,7 @@ do
                 printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
             fi
     else
-        printf "Guarding. "
+        printf "Guarding.$ETEOL\033[0K\r\n"
     fi
     sleep 1
 done
