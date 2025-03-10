@@ -6,7 +6,7 @@ clear
 echo "--------------------"
 echo "Watchdog"
 echo "--------------------"
-echo 0 >> TRIP
+echo 0 > TRIP
 
 while true
 do 
