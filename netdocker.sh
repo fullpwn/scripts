@@ -28,7 +28,7 @@ do
     printf "$ptx $prx\033[0K\r\n"
     printf "↓ $TXFRM/s ↑ $RXFRM/s\033[0K\r\n"
     
-    if [ $TRIP -eq 1 ]
+    if [ "$TRIP" -eq 1 ]
         then
             if [ $CONTUPD -eq 0 ]
                 then
