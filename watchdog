@@ -11,7 +11,7 @@ while true
 do
     read -rsn1 input
     if [ "$input" = "q" ]; then
-            if [ $TRIP = 0 ]; then
+            if [ "$TRIP" = 0 ]; then
                     echo "Trip"
                     sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
                     TRIP=1
