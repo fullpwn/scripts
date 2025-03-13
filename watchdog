@@ -8,9 +8,13 @@ echo "Watchdog"
 echo "--------------------"
 if [ $1 -eq 1 ]
 then
-    echo test
+    sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
+    TRIP=1
+    echo 1 > TRIP
+    else 
+    echo 0 > TRIP
 fi
-echo 0 > TRIP
+
 
 while true
 do 
@@ -39,6 +43,7 @@ do
                 sudo reboot
               exit 1
             else 
+                sudo docker rm -v -f $(sudo docker ps -qaf "status=exited") > /dev/null
                 printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
             fi
     else
