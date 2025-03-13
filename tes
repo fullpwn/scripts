@@ -1,0 +1,12 @@
+#!/bin/bash
+TRIP=0
+while true; do
+read -rsn1 input
+if [ "$input" = "a" ]; then
+    if [ $TRIP -eq 0 ]; then
+            echo "hello world"
+        TRIP=1
+    fi
+
+fi
+done

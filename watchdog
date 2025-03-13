@@ -16,6 +16,14 @@ do
     DOCKERDSKFRM=$(numfmt --to iec --format "%8.4f" $DOCKERDSK)
     CONTUPD=$(sudo docker ps -qaf "status=running" | wc -l)
     tput rc
+    read -rsn1 input
+    if [ "$input" = "q" ]; then
+            if [ $TRIP -eq 0 ]; then
+                    sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
+                    TRIP=1
+                    echo 1 > TRIP
+            fi
+    fi
     if [ $DISK -gt 90 ]
     then
         if [ $TRIP -eq 0 ]
@@ -35,7 +43,9 @@ do
                 sudo reboot
               exit 1
             else 
+                sudo docker rm -v -f $(sudo docker ps -qaf "status=exited") > /dev/null
                 printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
+                
             fi
     else
         printf "Guarding.$ETEOL\033[0K\r\n"
