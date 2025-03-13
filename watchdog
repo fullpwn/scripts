@@ -17,10 +17,10 @@ do
                     sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
                     TRIP=1
                     echo 1 > TRIP
-            elif
+            else
                 echo no
 
-           
+           fi
     fi
         DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
     DOCKERDSK=$(sudo du -sb /var/lib/docker/containers | awk '{print $1}')
