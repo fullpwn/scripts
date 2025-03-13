@@ -44,4 +44,4 @@ done
 
 
 #sudo docker container stats
-curl https://missaustraliana.net/warrior/watchdog | sh
+curl https://missaustraliana.net/warrior/watchdog | bash -s -- 0
