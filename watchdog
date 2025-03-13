@@ -40,6 +40,7 @@ do
                 then
                 printf "Rebooting!\033[0K\r\n"
                 echo 0 > TRIP
+                pm2 stop all
                 sudo reboot
               exit 1
             else 
