@@ -10,7 +10,7 @@ echo 0 > TRIP
 while true
 do 
     TRIP=$(cat TRIP)
-        read -rsn1 input
+        read -t 0.25 -N 1 input
     if [ "$input" = "q" ]; then
             if [ "$TRIP" = 0 ]; then
                     echo "Trip"
