@@ -8,8 +8,9 @@ echo "Watchdog"
 echo "--------------------"
 echo 0 > TRIP
 while true
-do
-    read -rsn1 input
+do 
+    TRIP=$(cat TRIP)
+        read -rsn1 input
     if [ "$input" = "q" ]; then
             if [ "$TRIP" = 0 ]; then
                     echo "Trip"
@@ -18,10 +19,6 @@ do
                     echo 1 > TRIP
             fi
     fi
-done
-while true
-do 
-    TRIP=$(cat TRIP)
         DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
     DOCKERDSK=$(sudo du -sb /var/lib/docker/containers | awk '{print $1}')
     DOCKERDSKFRM=$(numfmt --to iec --format "%8.4f" $DOCKERDSK)
@@ -51,6 +48,5 @@ do
                 
             fi
     fi
-    echo t
     sleep 1
 done
