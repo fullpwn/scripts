@@ -6,7 +6,7 @@ clear
 echo "--------------------"
 echo "Watchdog"
 echo "--------------------"
-if [ $1 -eq 1 ]
+if [ "$1" -eq 1 ]
 then
     sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
     TRIP=1
