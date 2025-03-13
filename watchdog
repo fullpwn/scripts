@@ -51,5 +51,6 @@ do
                 
             fi
     fi
+    echo t
     sleep 1
 done
