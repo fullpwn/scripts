@@ -20,7 +20,7 @@ do
             elif
                 echo no
 
-            fi
+           
     fi
         DISK=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
     DOCKERDSK=$(sudo du -sb /var/lib/docker/containers | awk '{print $1}')
