@@ -38,10 +38,10 @@ do
                 printf "Rebooting!\033[0K\r\n"
               exit 1
             else 
-                printf "Pending reboot. $DISK/90$ETEOL\033[0K\r\n"
+                printf "Pending reboot. $DISK/75$ETEOL\033[0K\r\n"
             fi
     else
-        printf "Disk: $DISK/90$ETEOL\033[0K\r\n"
+        printf "Disk: $DISK/75$ETEOL\033[0K\r\n"
     fi
     #printf "Taking: $DOCKERDSKFRM $ETEOL\033[0K\r\n"
     if [ $CONTUPD -eq $CONTCNT ]
