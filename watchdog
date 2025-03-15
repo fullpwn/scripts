@@ -6,6 +6,7 @@ clear
 echo "--------------------"
 echo "Watchdog"
 echo "--------------------"
+DOCKER=0
 if [ "$1" -eq 1 ]
 then
     sudo docker kill --signal=SIGINT $(sudo docker ps -qaf "status=running") > /dev/null
@@ -44,7 +45,15 @@ do
                 sudo reboot
               exit 1
             else 
-                sudo docker rm -v -f $(sudo docker ps -qaf "status=exited") > /dev/null
+                if [ $DOCKER -eq 5 ]; then
+                   DOCKER=0
+                   sudo docker rm -v -f $(sudo docker ps -qaf "status=exited") > /dev/null
+                else
+                   DOCKER=$((DOCKER+1))
+                   
+               fi
+               sleep 1
+                
                 printf "Pending reboot. $DISK/75$ETEOL\033[0K\r\n"
             fi
     else

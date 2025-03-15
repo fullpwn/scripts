@@ -1,12 +1,11 @@
 #!/bin/bash
 TRIP=0
 while true; do
-read -rsn1 input
-if [ "$input" = "a" ]; then
-    if [ $TRIP -eq 0 ]; then
-            echo "hello world"
-        TRIP=1
+    if [ $TRIP -eq 5 ]; then
+        TRIP=0
+    else
+        TRIP=$((TRIP+1))
+        echo $TRIP
     fi
-
-fi
+    sleep 1
 done
