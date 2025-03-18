@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="usgovernment"
+PROJECT="terroroftinytown-client"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
