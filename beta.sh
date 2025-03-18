@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="terroroftinytown-client"
+PROJECT="urls"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
