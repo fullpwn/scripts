@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="urls"
+PROJECT="voiceofamerica"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
