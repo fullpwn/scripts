@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="urls"
+PROJECT="roblox-assets"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
