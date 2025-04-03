@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="usgovernment"
+PROJECT="urls"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
