@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="roblox-assets"
+PROJECT="terroroftinytown-client"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
