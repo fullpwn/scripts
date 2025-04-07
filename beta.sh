@@ -1,6 +1,6 @@
 #!/bin/sh
 #Config
-PROJECT="urls"
+PROJECT="twitch"
 USERNAME="fullpwnmedia"
 #Prep
 ident() {
